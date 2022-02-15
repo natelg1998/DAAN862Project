@@ -44,9 +44,11 @@ def calc_missing_values(series):
 
 calc_missing_values(epadata)
 
-#Drop any columns with 50% or more values
+#Drop any columns with 50% or more values. Also drop certain attributes that will not add value to a model
 epadata = epadata.drop(["guzzler", "trans_dscr", "tCharger", "sCharger", "atvType", "fuelType2", "rangeA",
-                        "evMotor", "mfrCode", "c240Dscr","charge240b", "c240bDscr", "startStop"], axis = 1)
+                        "evMotor", "mfrCode", "c240Dscr","charge240b", "c240bDscr", "startStop",
+                        "createdOn", "modifiedOn", "engId", "feScore", "ghgScore", "ghgScoreA", "id",
+                        "mpgData", "phevBlended"], axis = 1)
 
 print(epadata.info())
 print(epadata.isna().sum())
@@ -60,11 +62,9 @@ epadata['fuelType1'] = epadata['fuelType1'].astype('category')
 epadata['make'] = epadata['make'].astype('category')
 epadata['model'] = epadata['model'].astype('category')
 #Values were Y and N so made it bool
-epadata['mpgData'] = epadata['mpgData'].astype('bool')
 epadata['trany'] = epadata['trany'].astype('category')
 epadata['VClass'] = epadata['VClass'].astype('category')
-epadata['createdOn'] = epadata['createdOn'].astype('category')
-epadata['modifiedOn'] = epadata['modifiedOn'].astype('category')
+
 
 print(epadata.info())
 

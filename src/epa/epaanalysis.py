@@ -18,7 +18,7 @@ print(epacomplete.head())
 print(epacomplete.isna().sum())
 
 #These columns are not needed for analysis
-epacomplete = epacomplete.drop(['createdOn', 'modifiedOn', 'engId', 'feScore', 'ghgScore', 'ghgScoreA', 'id', 'mpgData', 'phevBlended'], axis = 1)
+# epacomplete = epacomplete.drop(['createdOn', 'modifiedOn', 'engId', 'feScore', 'ghgScore', 'ghgScoreA', 'id', 'mpgData', 'phevBlended'], axis = 1)
 
 print(epacomplete.corr())
 
@@ -101,11 +101,11 @@ y = epacomplete['comb08']
 #
 # plt.show()
 
-plt.plot(epacomplete['year'], epacomplete['barrels08'])
-plt.show()
+# plt.plot(epacomplete['year'], epacomplete['barrels08'])
+# plt.show()
 
 sns.lineplot(x ="year", y = "barrels08", data = epacomplete)
-plt.title('Annual Petroleum consumtion in barrels for type2 fuel')
+plt.title('Annual Petroleum consumption in barrels for type2 fuel')
 plt.ylabel('Annual Barrels consumption')
 plt.show()
 
