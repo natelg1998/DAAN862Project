@@ -48,41 +48,47 @@ calc_missing_values(epadata)
 epadata = epadata.drop(["guzzler", "trans_dscr", "tCharger", "sCharger", "atvType", "fuelType2", "rangeA",
                         "evMotor", "mfrCode", "c240Dscr","charge240b", "c240bDscr", "startStop",
                         "createdOn", "modifiedOn", "engId", "feScore", "ghgScore", "ghgScoreA", "id",
-                        "mpgData", "phevBlended"], axis = 1)
+                        "mpgData", "phevBlended", "year"], axis = 1)
+epanumeric = epadata.copy()
+epanumeric = epanumeric.apply(pd.to_numeric, errors = 'coerce').dropna(axis = 1)
+print(epanumeric.info())
+print(epanumeric.dtypes)
+print(epanumeric.isna().sum())
+calc_missing_values(epanumeric)
 
-print(epadata.info())
-print(epadata.isna().sum())
-
-#For mice forest, we need to change all objects to either categoric or numeric type
-#all our values are category
-epadata['drive'] = epadata['drive'].astype('category')
-epadata['eng_dscr'] = epadata['eng_dscr'].astype('category')
-epadata['fuelType'] = epadata['fuelType'].astype('category')
-epadata['fuelType1'] = epadata['fuelType1'].astype('category')
-epadata['make'] = epadata['make'].astype('category')
-epadata['model'] = epadata['model'].astype('category')
-#Values were Y and N so made it bool
-epadata['trany'] = epadata['trany'].astype('category')
-epadata['VClass'] = epadata['VClass'].astype('category')
-
-
-print(epadata.info())
-
-# epadatadf1 = epadata
-# epadatadf1.drop(['createdOn', 'modifiedOn'])
-# #Let's handle the rest of the missing values
-kds = mf.ImputationKernel(
-    data = epadata,
-    datasets =1,
-    save_all_iterations=True,
-    random_state=5345
-)
-# #
-kds.mice(3)
-#
-completed_data = kds.complete_data(0)
-# print(completed_data)
-# print(type(completed_data))
-
-epacomplete = pd.DataFrame(completed_data)
+epacomplete = pd.DataFrame(epanumeric)
 epacomplete.to_pickle(f"{data_dir}\\epacomplete.pkl")
+#
+# #For mice forest, we need to change all objects to either categoric or numeric type
+# #all our values are category
+# epadata['drive'] = epadata['drive'].astype('category')
+# epadata['eng_dscr'] = epadata['eng_dscr'].astype('category')
+# epadata['fuelType'] = epadata['fuelType'].astype('category')
+# epadata['fuelType1'] = epadata['fuelType1'].astype('category')
+# epadata['make'] = epadata['make'].astype('category')
+# epadata['model'] = epadata['model'].astype('category')
+# #Values were Y and N so made it bool
+# epadata['trany'] = epadata['trany'].astype('category')
+# epadata['VClass'] = epadata['VClass'].astype('category')
+#
+#
+# print(epadata.info())
+#
+# # epadatadf1 = epadata
+# # epadatadf1.drop(['createdOn', 'modifiedOn'])
+# # #Let's handle the rest of the missing values
+# kds = mf.ImputationKernel(
+#     data = epadata,
+#     datasets =1,
+#     save_all_iterations=True,
+#     random_state=5345
+# )
+# # #
+# kds.mice(3)
+# #
+# completed_data = kds.complete_data(0)
+# # print(completed_data)
+# # print(type(completed_data))
+#
+# epacomplete = pd.DataFrame(completed_data)
+# epacomplete.to_pickle(f"{data_dir}\\epacomplete.pkl")
