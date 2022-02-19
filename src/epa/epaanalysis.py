@@ -25,62 +25,66 @@ Normalize our variables
 """
 
 scaler = MinMaxScaler()
-# scaler.fit(epacomplete)
+scaler.fit(epacomplete)
 epascaled = pd.DataFrame(scaler.fit_transform(epacomplete),
                          columns = epacomplete.columns, index = epacomplete.index)
 print(epascaled.head())
 #
 # #Index 15 is our dependent variable comb08
 #
-X1 = epascaled.iloc[:,[15, 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]]
-corrmatrix1 = X1.corr().round(2)
-sns.heatmap(corrmatrix1, annot = True)
-plt.show()
-
-X2 = epascaled.iloc[:,[15, 16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]]
-corrmatrix2 = X2.corr().round(2)
-sns.heatmap(corrmatrix2, annot = True)
-plt.show()
-
-X3 = epascaled.iloc[:,[15, 31,32,33,34,35,36,37,38,39,40,41,42,43,44,45]]
-corrmatrix3 = X3.corr().round(2)
-sns.heatmap(corrmatrix3, annot = True)
-plt.show()
-
-X4 = epascaled.iloc[:,[15, 46,47,48,49]]
-corrmatrix4 = X4.corr().round(2)
-sns.heatmap(corrmatrix4, annot = True)
-plt.show()
+# X1 = epascaled.iloc[:,[15, 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]]
+# corrmatrix1 = X1.corr().round(2)
+# sns.heatmap(corrmatrix1, annot = True)
+# plt.show()
+#
+# X2 = epascaled.iloc[:,[15, 16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]]
+# corrmatrix2 = X2.corr().round(2)
+# sns.heatmap(corrmatrix2, annot = True)
+# plt.show()
+#
+# X3 = epascaled.iloc[:,[15, 31,32,33,34,35,36,37,38,39,40,41,42,43,44,45]]
+# corrmatrix3 = X3.corr().round(2)
+# sns.heatmap(corrmatrix3, annot = True)
+# plt.show()
+#
+# X4 = epascaled.iloc[:,[15, 46,47,48,49]]
+# corrmatrix4 = X4.corr().round(2)
+# sns.heatmap(corrmatrix4, annot = True)
+# plt.show()
 
 #melt the data to create boxplots
 # epascaled_melt = pd.melt(epascaled)
 # print(epascaled_melt.head())
 #
-group1 = epascaled.iloc[:,0:10]
-group1_melt = pd.melt(group1)
-sns.boxplot(x= "variable", y = "value", data = group1_melt)
-plt.show()
 
-group2 = epascaled.iloc[:,11:21]
-group2_melt = pd.melt(group2)
-sns.boxplot(x= "variable", y = "value", data = group2_melt)
-plt.show()
+#Visualize distributions for outliers
+# group1 = epascaled.iloc[:,0:10]
+# group1_melt = pd.melt(group1)
+# sns.boxplot(x= "variable", y = "value", data = group1_melt)
+# plt.show()
+#
+# group2 = epascaled.iloc[:,11:21]
+# group2_melt = pd.melt(group2)
+# sns.boxplot(x= "variable", y = "value", data = group2_melt)
+# plt.show()
+#
+# group3 = epascaled.iloc[:,22:32]
+# group3_melt = pd.melt(group3)
+# sns.boxplot(x= "variable", y = "value", data = group3_melt)
+# plt.show()
+#
+# group4 = epascaled.iloc[:,33:43]
+# group4_melt = pd.melt(group4)
+# sns.boxplot(x= "variable", y = "value", data = group4_melt)
+# plt.show()
+#
+# group5 = epascaled.iloc[:,44:49]
+# group5_melt = pd.melt(group5)
+# sns.boxplot(x= "variable", y = "value", data = group5_melt)
+# plt.show()
 
-group3 = epascaled.iloc[:,22:32]
-group3_melt = pd.melt(group3)
-sns.boxplot(x= "variable", y = "value", data = group3_melt)
-plt.show()
-
-group4 = epascaled.iloc[:,33:43]
-group4_melt = pd.melt(group4)
-sns.boxplot(x= "variable", y = "value", data = group4_melt)
-plt.show()
-
-group5 = epascaled.iloc[:,44:49]
-group5_melt = pd.melt(group5)
-sns.boxplot(x= "variable", y = "value", data = group5_melt)
-plt.show()
-
+epascaled.drop('charge120', axis = 1, inplace = True)
+epascaled.to_pickle(f"{data_dir}\\epascaled.pkl")
 # sns.boxplot(x= "variable", y = "value", data = epascaled_melt)
 # plt.show()
 
