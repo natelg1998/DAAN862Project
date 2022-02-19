@@ -1,6 +1,8 @@
 # DAAN862Project
 Python project for DAAN862
 
+Mutliple Linear Regression analysis. What factors effect combined miles per gallon (comb08)
+
 Data Sources:
 https://www.fueleconomy.gov/feg/download.shtml
 https://www.kaggle.com/susuwatari/epa-vehicle-dataset-19802021/code
