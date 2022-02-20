@@ -16,6 +16,7 @@ https://www.numpyninja.com/post/mice-and-knn-missing-value-imputations-through-p
 https://www.numpyninja.com/post/mice-algorithm-to-impute-missing-values-in-a-dataset
 https://scikit-learn.org/stable/modules/impute.html#multivariate-feature-imputation
 https://scikit-learn.org/stable/modules/generated/sklearn.impute.IterativeImputer.html#sklearn.impute.IterativeImputer
+https://miceforest.readthedocs.io/en/latest/miceforest.html#module-miceforest.ImputationKernel
 
 How to Impute NA for Outliers 
 https://www.statology.org/remove-outliers-python/

@@ -49,6 +49,8 @@ epadata = epadata.drop(["guzzler", "trans_dscr", "tCharger", "sCharger", "atvTyp
                         "evMotor", "mfrCode", "c240Dscr","charge240b", "c240bDscr", "startStop",
                         "createdOn", "modifiedOn", "engId", "feScore", "ghgScore", "ghgScoreA", "id",
                         "mpgData", "phevBlended", "year"], axis = 1)
+
+#Drop all non-numeric values
 epanumeric = epadata.copy()
 epanumeric = epanumeric.apply(pd.to_numeric, errors = 'coerce').dropna(axis = 1)
 print(epanumeric.info())

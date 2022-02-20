@@ -19,6 +19,10 @@ pd.options.display.max_columns= None
 pd.set_option('display.max_rows', 3000)
 pd.set_option('display.max_columns', 3000)
 
+"""Build a baseline model"""
+
+
+
 X = epacomplete[:, epacomplete.columns != 'comb08']
 y = epacomplete['comb08']
 

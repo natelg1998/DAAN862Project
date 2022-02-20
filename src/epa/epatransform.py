@@ -13,6 +13,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.model_selection import KFold
 from sklearn.model_selection import GridSearchCV
+import miceforest as mf
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.feature_selection import RFE
@@ -58,13 +59,38 @@ print(epaclean1.head(15))
 
 #Now that we cleaned the data removing the outliers, we will use MICE to impute for the outliers
 lr = LinearRegression()
-imp = IterativeImputer(estimator = lr, missing_values=np.nan, max_iter = 15, imputation_order = "roman",
+imp = IterativeImputer(estimator = lr, missing_values=np.nan, max_iter = 75, imputation_order = "roman",
                        random_state= 5769)
 
 epaimp = imp.fit_transform(epaclean1)
 epaimputed = pd.DataFrame(epaimp, index = epaclean1.index, columns = epaclean1.columns)
 print(epaimputed.head())
 calc_outliers(epaimputed)
+
+# kds = mf.ImputationKernel(
+#     data = epaclean1,
+#     datasets =1,
+#     mean_match_candidates=7,
+#     save_all_iterations=True,
+#     random_state=5345
+# )
+# # #
+# kds.mice(5, verbose = True)
+# completed_data = kds.complete_data(0)
+#
+# calc_outliers(completed_data)
+#
+# optimal_parameters, losses = kds.tune_parameters(
+#     dataset =0,
+#     verbose = True,
+#     optimization_steps=5
+# )
+# print(optimal_parameters)
+# print("#" * 1000)
+# kds.mice(1, variable_parameters=optimal_parameters)
+# completedata2 = kds.complete_data(0)
+# calc_outliers(completedata2)
+# completedata2.to_pickle(f"{data_dir}\\epaimputed2.pkl")
 
 
 

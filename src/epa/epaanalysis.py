@@ -3,7 +3,7 @@ from pathlib import Path
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
 # print(os.getcwd())
 
 os.chdir('..\\..')
@@ -24,7 +24,7 @@ print(epacomplete.isna().sum())
 Normalize our variables 
 """
 
-scaler = MinMaxScaler()
+scaler = StandardScaler()
 scaler.fit(epacomplete)
 epascaled = pd.DataFrame(scaler.fit_transform(epacomplete),
                          columns = epacomplete.columns, index = epacomplete.index)
@@ -83,6 +83,7 @@ print(epascaled.head())
 # sns.boxplot(x= "variable", y = "value", data = group5_melt)
 # plt.show()
 
+#Drop charge120 as it is not providing any correlation
 epascaled.drop('charge120', axis = 1, inplace = True)
 epascaled.to_pickle(f"{data_dir}\\epascaled.pkl")
 # sns.boxplot(x= "variable", y = "value", data = epascaled_melt)
