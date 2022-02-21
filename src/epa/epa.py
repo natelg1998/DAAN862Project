@@ -31,7 +31,6 @@ print(epadata.info())
 print(epadata.isna().sum())
 
 
-
 def calc_missing_values(series):
     """
     Calculate percentage of NAs in dataframe
@@ -60,37 +59,11 @@ calc_missing_values(epanumeric)
 
 epacomplete = pd.DataFrame(epanumeric)
 epacomplete.to_pickle(f"{data_dir}\\epacomplete.pkl")
-#
-# #For mice forest, we need to change all objects to either categoric or numeric type
-# #all our values are category
-# epadata['drive'] = epadata['drive'].astype('category')
-# epadata['eng_dscr'] = epadata['eng_dscr'].astype('category')
-# epadata['fuelType'] = epadata['fuelType'].astype('category')
-# epadata['fuelType1'] = epadata['fuelType1'].astype('category')
-# epadata['make'] = epadata['make'].astype('category')
-# epadata['model'] = epadata['model'].astype('category')
-# #Values were Y and N so made it bool
-# epadata['trany'] = epadata['trany'].astype('category')
-# epadata['VClass'] = epadata['VClass'].astype('category')
-#
-#
-# print(epadata.info())
-#
-# # epadatadf1 = epadata
-# # epadatadf1.drop(['createdOn', 'modifiedOn'])
-# # #Let's handle the rest of the missing values
-# kds = mf.ImputationKernel(
-#     data = epadata,
-#     datasets =1,
-#     save_all_iterations=True,
-#     random_state=5345
-# )
-# # #
-# kds.mice(3)
-# #
-# completed_data = kds.complete_data(0)
-# # print(completed_data)
-# # print(type(completed_data))
-#
-# epacomplete = pd.DataFrame(completed_data)
-# epacomplete.to_pickle(f"{data_dir}\\epacomplete.pkl")
+
+
+
+
+
+
+
+
