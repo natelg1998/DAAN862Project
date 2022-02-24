@@ -78,16 +78,16 @@ result = sm.OLS(y_train, x).fit()
 print(result.summary())
 #
 # #Test linearity assumption
-# linear_assumption(mlr_iterimp, X_train, y_train)
-#
-# #Test for normality of residuals
-# normal_errors_assumption(mlr_iterimp, X_train, y_train)
-#
-# #Test for multicollinearity
-# multicollinearity_assumption(mlr_iterimp, X_train, y_train, X.columns)
-#
-# #Test for autocorrelation
-# autocorrelation_assumption(mlr_iterimp, X_train, y_train)
+linear_assumption(mlr_iterimp, X_train, y_train)
+
+#Test for normality of residuals
+normal_errors_assumption(mlr_iterimp, X_train, y_train)
+
+#Test for multicollinearity
+multicollinearity_assumption(mlr_iterimp, X_train, y_train, X.columns)
+
+#Test for autocorrelation
+autocorrelation_assumption(mlr_iterimp, X_train, y_train)
 
 """LassoCV """
 folds = KFold(n_splits = 10, shuffle = True, random_state = 5758)
@@ -129,16 +129,16 @@ result = sm.OLS(y_train, x).fit()
 print(result.summary())
 #
 # # #Test linearity assumption
-# linear_assumption(mlr_iterimp, X_train, y_train)
-#
-# #Test for normality of residuals
-# normal_errors_assumption(mlr_iterimp, X_train, y_train)
-#
-# #Test for multicollinearity
-# multicollinearity_assumption(mlr_iterimp, X_train, y_train, X.columns)
-#
-# #Test for autocorrelation
-# autocorrelation_assumption(mlr_iterimp, X_train, y_train)
+linear_assumption(mlr_iterimp, X_train, y_train)
+
+#Test for normality of residuals
+normal_errors_assumption(mlr_iterimp, X_train, y_train)
+
+#Test for multicollinearity
+multicollinearity_assumption(mlr_iterimp, X_train, y_train, X.columns)
+
+#Test for autocorrelation
+autocorrelation_assumption(mlr_iterimp, X_train, y_train)
 
 #Drop features based on VIF values
 X = epamfimpute[[ 'city08U', 'co2',

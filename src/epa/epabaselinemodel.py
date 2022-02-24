@@ -53,3 +53,15 @@ print("Root Mean Square Error:", rmse_minmax)
 x = sm.add_constant(X)
 result = sm.OLS(y, x).fit()
 print(result.summary())
+
+# #Test linearity assumption
+linear_assumption(mlr_base, X, y)
+
+#Test for normality of residuals
+normal_errors_assumption(mlr_base, X, y)
+
+#Test for multicollinearity
+multicollinearity_assumption(mlr_base, X, y, X.columns)
+
+#Test for autocorrelation
+autocorrelation_assumption(mlr_base, X, y)

@@ -25,15 +25,6 @@ pd.set_option('display.max_columns', 3000)
 print(epadata.head())
 print(epadata.dtypes)
 
-# def calc_missing_values(df):
-#     """
-#     Calculate percentage of NAs in dataframe
-#     :param df:
-#     :return:
-#     """
-#     num = df.isnull().sum()
-#     length = len(df)
-#     print(round(num/length, 2))
 
 #Check for nulls
 print("Null Values List")
